@@ -28,7 +28,6 @@ class App extends Component {
             json.map((data,index) => {
               imageFolders.push({title:data.name,url:data.url});
           });
-          console.log(imageFolders)
           this.setState({imageFolders:imageFolders})
         })
   }
@@ -50,11 +49,8 @@ class App extends Component {
             json.map((data,index) => {
               images.push({size:data.size,url:data.download_url});
           });  
-          console.log(images)
           this.setState({imageURLs:images})
         })
-
-
   }
 
   render() {
@@ -69,10 +65,11 @@ class App extends Component {
               </select> 
           </p>
           <p>
-          {this.state.imageURLs.map((item,index) => {
-                return <img key={index} src={item.url} style={{width:200}}/> })}
+          {
+            this.state.imageURLs.slice(0, this.state.photoCount).map((item,index) => {
+                return <img key={index} src={item.url} style={{width:200}}/> })
+            }
           </p>
-          <h2>{this.state.photoCount}</h2>
           <button onClick={this.viewMorePhotos}>
           View more
           </button>
