@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 
 const photoCount=12
-const addPhotos=6
+const addPhotos=4
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
+const imgWidth="25%"
 
 class App extends Component {
 
@@ -54,6 +55,11 @@ class App extends Component {
   }
 
   render() {
+    let viewMoreButton = null;
+    if (this.state.photoCount < this.state.imageURLs.length) {
+      viewMoreButton = <button onClick={this.viewMorePhotos}>View more</button>;
+    }
+
     return (
         <div>
           <h1>Baby website</h1>
@@ -67,12 +73,10 @@ class App extends Component {
           <p>
           {
             this.state.imageURLs.slice(0, this.state.photoCount).map((item,index) => {
-                return <img key={index} src={item.url} style={{width:200}}/> })
+                return <img key={index} src={item.url} style={{width:imgWidth}}/> })
             }
           </p>
-          <button onClick={this.viewMorePhotos}>
-          View more
-          </button>
+          {viewMoreButton}
         </div>
     );
   }
