@@ -3,7 +3,7 @@ import './App.css';
 
 const photoCount=8
 const addPhotos=4
-const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
+const imgURL="https://api.cloudinary.com/v1_1/chambersbristol/resources/image"
 const imgWidth="24%"
 
 class App extends Component {
@@ -21,11 +21,16 @@ class App extends Component {
 
   populateImageFolders() {
         fetch(imgURL, {
-            mode: 'cors'
+            mode: 'no-cors',
+            method: 'get', 
+            headers: {
+              'Authorization': 'Basic '+btoa('839567664643584:kwlgq3rwjF9_23LQ8yksqOvS6As')
+            }
         })
           .then(data => {return data.json()})
           .then(json => {
             const imageFolders=[]
+            console.log(imageFolders)
             json.map((data,index) => {
               imageFolders.push({title:data.name,url:data.url});
           });
