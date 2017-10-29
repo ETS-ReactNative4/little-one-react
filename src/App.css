@@ -1,5 +1,8 @@
-.App {
+/* .App {
   text-align: center;
+  max-width: 1280px;
+  display: block;
+  margin: 0 auto;
 }
 
 .App-logo {
@@ -11,11 +14,118 @@
   background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white;
+} */
+
+div{
+  background-color:#523E39;
+  max-width:1280px;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 4em;
+  margin-top: 0px;
+  text-align: center;
+  /* font-style: bold */
+}
+
+h2 {
+  margin-top: 0px;
+  text-align: center;
+}
+
+select {
+  width: 80%;
+  height: 40px;
+  align-content: centre;
+  background-color:#CEBEBA;
+  color: #523E39;
+  font-size: inherit;
+  margin-left: 10%;
+  margin-right: 10%;
+  cursor: pointer;
+}
+
+button {
+  width: 49%;
+  height: 40px;
+  align-content: centre;
+  background-color:#CEBEBA;
+  color: #523E39;
+  font-size: inherit;
+  margin-left: 25.5%;
+  margin-right: 25.5%;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+feature {
+  max-width:100px;
 }
 
 .App-intro {
   font-size: large;
+}
+
+a.button {
+  font-family: 'Play';
+  background-color: #523E39;
+  color: #CEBEBA;
+  padding: 8px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+  cursor: pointer;
+  float: right;
+}
+a.button:hover {
+  background-color: #8A6E67;
+  color: #CEBEBA;
+  border: 1px solid #8A6E67;
+  padding: 7px 7px;
+}
+
+img.modal {
+  display: block;
+  max-height: calc(100vh - 150px);
+  width: auto;
+}
+
+div.image {
+  display: inline;
+  padding: 0.5%
+}
+
+.modalDialog {
+  width: auto;
+  max-width: 100%;
+  display: inline-block;
+  text-align:center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  pointer-events: none;
+}
+.modalDialog:target {
+  opacity:1;
+  pointer-events: auto;
+}
+.modalDialog > div {
+  width: auto;
+  display: inline-block;
+  position: relative;
+  margin: 5% auto;
+  padding: 5px;
+  background: #CEBEBA;
+  /* background: -moz-linear-gradient(#fff, #999);
+  background: -webkit-linear-gradient(#fff, #999);
+  background: -o-linear-gradient(#fff, #999); */
 }
 
 @keyframes App-logo-spin {

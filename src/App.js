@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
-const photoCount=12
+const photoCount=8
 const addPhotos=4
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
-const imgWidth="25%"
+const imgWidth="24%"
 
 class App extends Component {
 
@@ -48,7 +48,7 @@ class App extends Component {
             //console.log(json)
             const images=[]
             json.map((data,index) => {
-              images.push({size:data.size,url:data.download_url});
+              images.push({size:data.size,url:data.download_url,sha:data.sha});
           });  
           this.setState({imageURLs:images})
         })
@@ -57,26 +57,31 @@ class App extends Component {
   render() {
     let viewMoreButton = null;
     if (this.state.photoCount < this.state.imageURLs.length) {
-      viewMoreButton = <button onClick={this.viewMorePhotos}>View more</button>;
+      viewMoreButton = <button onClick={this.viewMorePhotos}>View more from this album</button>;
     }
 
     return (
         <div>
-          <h1>Baby website</h1>
-          <p>
+          <div>
+          <h1>Albert Stephen Xavier Chambers</h1>
+          <h2>Born: Bristol on 20 July 2016 at 23:18, weight; 7 lbs 2 oz</h2>
+          </div>
+          <div>
             <select onChange={this.getPhotos} value={this.state.value}>
-              <option>Select a photo set</option>
+              <option>Select a photo album</option>
               {this.state.imageFolders.map((item,index) => {
                 return <option key={index} value={item.url}>{item.title}</option>})}
               </select> 
-          </p>
-          <p>
+          </div>
+          <div>
           {
             this.state.imageURLs.slice(0, this.state.photoCount).map((item,index) => {
-                return <img key={index} src={item.url} style={{width:imgWidth}}/> })
-            }
-          </p>
+            return (<div className = {"image"}><a href={"#"+item.sha}><img key={index} src={item.url} style={{width:imgWidth, height:200}}/></a><div id={item.sha} className={"modalDialog"}><div><img src={item.url} className={"modal"}/><a href= {"#close"} className={"button"}>Close</a></div></div></div>)})}
+
+          </div>
+          <div>
           {viewMoreButton}
+          </div>
         </div>
     );
   }
