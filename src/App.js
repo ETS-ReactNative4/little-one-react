@@ -4,13 +4,19 @@ import './App.css';
 const photoCount=8
 const addPhotos=4
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
+const imgLocation="https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/"
+const http="https://"
+const imgThumbnailBase=".tiny.pictures/main/"
+const imgThumbnail0 = "chambersbristol"
+const imgThumbnail1 = "chambersbristolextra"
+const imgThumbnailwidth="300"
 const imgWidth="24%"
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state={imageFolders:[], imageURLs:[], photoCount: photoCount};
+    this.state={imageFolders:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[] };
     this.viewMorePhotos=this.viewMorePhotos.bind(this);
     this.getPhotos=this.getPhotos.bind(this);
     }
@@ -48,9 +54,20 @@ class App extends Component {
             //console.log(json)
             const images=[]
             json.map((data,index) => {
-              images.push({size:data.size,url:data.download_url,sha:data.sha});
-          });  
+              let thumbnail = data.download_url
+              let rand = Math.random();
+              if (index % 2 == 0){
+                thumbnail = thumbnail.replace(imgLocation, http + imgThumbnail0 + imgThumbnailBase);
+                console.log(thumbnail)
+              } else {
+                thumbnail = thumbnail.replace(imgLocation, http + imgThumbnail1 + imgThumbnailBase);
+                console.log(thumbnail)
+              }
+              thumbnail = thumbnail + "?width=" + imgThumbnailwidth
+              images.push({size:data.size,url:data.download_url,sha:data.sha, thumbnail:thumbnail});
+          });
           this.setState({imageURLs:images})
+          this.setState({imageTumbnails:this.state.imagesURLs})
         })
   }
 
@@ -64,7 +81,7 @@ class App extends Component {
         <div>
           <div>
           <h1>Albert Stephen Xavier Chambers</h1>
-          <h2>Born: Bristol on 20 July 2016 at 23:18, weight; 7 lbs 2 oz</h2>
+          <h2>Born: Bristol on 20 July 2016 at 23:18, weight; 7lbs 2oz</h2>
           </div>
           <div>
             <select onChange={this.getPhotos} value={this.state.value}>
@@ -76,7 +93,7 @@ class App extends Component {
           <div>
           {
             this.state.imageURLs.slice(0, this.state.photoCount).map((item,index) => {
-            return (<div className = {"image"}><a href={"#"+item.sha}><img key={index} src={item.url} style={{width:imgWidth, height:200}}/></a><div id={item.sha} className={"modalDialog"}><div><img src={item.url} className={"modal"}/><a href= {"#close"} className={"button"}>Close</a></div></div></div>)})}
+            return (<div className = {"image"}><a href={"#"+item.sha}><img key={index} src={item.thumbnail} style={{width:imgWidth, height:200}}/></a><div id={item.sha} className={"modalDialog"}><div><img src={item.url} className={"modal"}/><a href= {"#close"} className={"button"}>Close</a></div></div></div>)})}
 
           </div>
           <div>
