@@ -5,10 +5,7 @@ const photoCount=8
 const addPhotos=4
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
 const imgLocation="https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/"
-const http="https://"
-const imgThumbnailBase=".tiny.pictures/main/"
-const imgThumbnail0 = "chambersbristol"
-const imgThumbnail1 = "chambersbristolextra"
+const imgThumbnailBase="https://chambersbristol.tiny.pictures/main/"
 const imgThumbnailwidth="300"
 const imgWidth="24%"
 
@@ -55,14 +52,7 @@ class App extends Component {
             const images=[]
             json.map((data,index) => {
               let thumbnail = data.download_url
-              let rand = Math.random();
-              if (index % 2 == 0){
-                thumbnail = thumbnail.replace(imgLocation, http + imgThumbnail0 + imgThumbnailBase);
-                console.log(thumbnail)
-              } else {
-                thumbnail = thumbnail.replace(imgLocation, http + imgThumbnail1 + imgThumbnailBase);
-                console.log(thumbnail)
-              }
+              thumbnail = thumbnail.replace(imgLocation, imgThumbnailBase);
               thumbnail = thumbnail + "?width=" + imgThumbnailwidth
               images.push({size:data.size,url:data.download_url,sha:data.sha, thumbnail:thumbnail});
           });
