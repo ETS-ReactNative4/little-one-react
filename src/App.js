@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-const photoCount=8
+const photoCount=2
 const addPhotos=4
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
 const imgLocation="https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/"
@@ -13,7 +13,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state={imageFolders:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[] };
+    this.state={imageFolders:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[], modal:"https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/Devon%202017/DSC00917.jpg" };
     this.viewMorePhotos=this.viewMorePhotos.bind(this);
     this.getPhotos=this.getPhotos.bind(this);
     }
@@ -42,7 +42,6 @@ class App extends Component {
   }
 
   getPhotos (option) {
-
           fetch(option.target.value, {
             mode: 'cors'
         })
@@ -60,6 +59,10 @@ class App extends Component {
           this.setState({imageTumbnails:this.state.imagesURLs})
         })
   }
+
+  updateModal (item) {
+    console.log (item)
+  }    
 
   render() {
     let viewMoreButton = null;
@@ -83,13 +86,32 @@ class App extends Component {
           <div>
           {
             this.state.imageURLs.slice(0, this.state.photoCount).map((item,index) => {
-            return (<div className = {"image"}><a href={"#"+item.sha}><img key={index} src={item.thumbnail} style={{width:imgWidth, height:200}}/></a><div id={item.sha} className={"modalDialog"}><div><img src={item.url} className={"modal"}/><a href= {"#close"} className={"button"}>Close</a></div></div></div>)})}
+            return (
+            <div key={index} className = {"image"}>
+              <a href={"#modal"} id={index} onClick={this.updateModal(index)}>
+                <img src={item.thumbnail} alt = {""} style={{width:imgWidth, height:200}}/>
+              </a>
+            </div>
+            )
+            })
+          }
 
           </div>
           <div>
           {viewMoreButton}
           </div>
+        
+        
+          {
+            <div id={"modal"} className={"modalDialog"}>
+              <div>
+                <img src={this.state.modal} alt = {""} className={"modal"}/>
+                <a href= {"#close"} className={"button"}>Close</a>
+              </div>
+            </div>
+          }
         </div>
+
     );
   }
 }
