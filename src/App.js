@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 
-const photoCount=2
+const photoCount=4
 const addPhotos=4
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
 const imgLocation="https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/"
 const imgThumbnailBase="https://chambersbristol.tiny.pictures/main/"
 const imgThumbnailwidth="300"
-const imgWidth="24%"
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state={imageFolders:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[], modal:"https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/Devon%202017/DSC00917.jpg" };
+    this.state={imageFolders:[], option:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[], modal:"", modalNext:"",modalPrevious:"" };
     this.viewMorePhotos=this.viewMorePhotos.bind(this);
     this.getPhotos=this.getPhotos.bind(this);
+    this.updateModal=this.updateModal.bind(this);
+    this.setModal=this.setModal.bind(this);
     }
   
   componentWillMount() {
@@ -60,15 +61,42 @@ class App extends Component {
         })
   }
 
+  setModal (item,id,event) {
+    const newModal = item.url
+    const newModalNext = id+1
+    const newModalPrevious = id-1
+    this.setState({modal:newModal})
+    this.setState({modalNext:newModalNext})
+    this.setState({modalPrevious:newModalPrevious})
+
+  }
+
   updateModal (item) {
-    console.log (item)
-  }    
+    const newModal=this.state.imageURLs[item.target.id].url
+    this.setState({modal:newModal})
+    const newModalNext = parseInt(item.target.id)+1
+    const newModalPrevious = parseInt(item.target.id)-1
+    this.setState({modalNext:newModalNext})
+    this.setState({modalPrevious:newModalPrevious})
+}
 
   render() {
     let viewMoreButton = null;
+    let previousButton = null;
+    let nextButton = null;
     if (this.state.photoCount < this.state.imageURLs.length) {
       viewMoreButton = <button onClick={this.viewMorePhotos}>View more from this album</button>;
     }
+
+    if (this.state.modalPrevious >= 0) {
+      previousButton = <button onClick={this.updateModal} id={this.state.modalPrevious} className={"button"}>Previous</button>
+    }
+
+    if (this.state.modalNext < this.state.imageURLs.length) {
+      nextButton = <button onClick={this.updateModal} id={this.state.modalNext}className={"button"}>Next</button>
+    }
+
+
 
     return (
         <div>
@@ -83,30 +111,29 @@ class App extends Component {
                 return <option key={index} value={item.url}>{item.title}</option>})}
               </select> 
           </div>
-          <div>
           {
             this.state.imageURLs.slice(0, this.state.photoCount).map((item,index) => {
             return (
-            <div key={index} className = {"image"}>
-              <a href={"#modal"} id={index} onClick={this.updateModal(index)}>
-                <img src={item.thumbnail} alt = {""} style={{width:imgWidth, height:200}}/>
-              </a>
-            </div>
+              <div key={index} className = {"image"}>
+                <a href={"#modal"} onClick={(e) => this.setModal(item,index,e)}>
+                  <img src={item.thumbnail} className={"thumbnail"} alt = {""}/>
+                </a>
+              </div>
             )
             })
           }
-
-          </div>
           <div>
-          {viewMoreButton}
+            {viewMoreButton}
           </div>
-        
-        
           {
             <div id={"modal"} className={"modalDialog"}>
               <div>
                 <img src={this.state.modal} alt = {""} className={"modal"}/>
-                <a href= {"#close"} className={"button"}>Close</a>
+                <a href={"#close"} className={"button"}>Close</a>
+                {previousButton}
+                {nextButton}
+                {/* <button onClick={this.updateModal} id={this.state.modalPrevious} className={"button"}>Previous {this.state.modalPrevious}</button> */}
+                {/* <button onClick={this.updateModal} id={this.state.modalNext}className={"button"}>Next {this.state.modalNext}</button> */}
               </div>
             </div>
           }
