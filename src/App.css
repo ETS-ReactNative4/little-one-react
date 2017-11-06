@@ -51,7 +51,7 @@ select {
   cursor: pointer;
 }
 
-button {
+button.morePhotos {
   width: 49%;
   height: 40px;
   align-content: centre;
@@ -64,6 +64,26 @@ button {
   -webkit-appearance: none;
 }
 
+button.imageNav {
+  background-color: #523E39;
+  color: #CEBEBA;
+  padding: 8px 8px;
+  text-align: center;
+  text-decoration: none;
+  margin: 0px 0px 10px 10px;
+  cursor: pointer;
+  float: right;
+  border: none;
+  font-size: 16px;
+}
+
+button.imageNav:hover {
+  background-color: #8A6E67;
+  color: #CEBEBA;
+  border: 1px solid #8A6E67;
+  padding: 7px 7px;
+}
+
 feature {
   max-width:100px;
 }
@@ -73,16 +93,15 @@ feature {
 }
 
 a.button {
-  font-family: 'Play';
   background-color: #523E39;
   color: #CEBEBA;
   padding: 8px 8px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  font-size: 16px;
   margin: 0px 10px 10px 0px;
   cursor: pointer;
-  float: right;
+  float: left;
 }
 a.button:hover {
   background-color: #8A6E67;
