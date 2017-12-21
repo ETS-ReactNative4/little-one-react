@@ -12,7 +12,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state={imageFolders:[], option:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[], modal:"", modalNext:"",modalPrevious:"" };
+    this.state={imageFolders:[], option:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[], modal:"", modalNext:"",modalPrevious:"",imageStatus: true };
     this.viewMorePhotos=this.viewMorePhotos.bind(this);
     this.getPhotos=this.getPhotos.bind(this);
     this.updateModal=this.updateModal.bind(this);
@@ -72,13 +72,20 @@ class App extends Component {
   }
 
   updateModal (item) {
+    this.setState({ imageStatus: true })
+    console.log(this.state.imageStatus)
     const newModal=this.state.imageURLs[item.target.id].url
     this.setState({modal:newModal})
-    const newModalNext = parseInt(item.target.id)+1
-    const newModalPrevious = parseInt(item.target.id)-1
+    const newModalNext = parseInt(item.target.id, 10)+1
+    const newModalPrevious = parseInt(item.target.id, 10)-1
     this.setState({modalNext:newModalNext})
     this.setState({modalPrevious:newModalPrevious})
-}
+  }
+
+  handleImageLoaded() {
+    this.setState({ imageStatus: false })
+    console.log(this.state.imageStatus)
+  }
 
   render() {
     let viewMoreButton = null;
@@ -95,6 +102,8 @@ class App extends Component {
     if (this.state.modalNext < this.state.imageURLs.length) {
       nextButton = <button display= {"inline-block"} onClick={this.updateModal} id={this.state.modalNext} className={"imageNav"}>Next</button>
     }
+
+    let content = this.state.imageStatus ? <div>Loading...</div> : null;
 
 
 
@@ -128,10 +137,13 @@ class App extends Component {
           {
             <div id={"modal"} className={"modalDialog"}>
               <div>
-              <img src={this.state.modal} display= {"inline-block"} alt = {""} className={"modal"}/>
+              {content}
+              <img onLoad={this.handleImageLoaded.bind(this)} src={this.state.modal} display={"inline-block"} alt={""} className={"modal"}/>
                 {nextButton}
                 {previousButton}
-                <a href={"#close"} className={"button"}>Close</a>
+                <form action="#close">
+                    <button className={"imageNav"} type={"submit"}>Close</button>  
+                </form>
               </div>
             </div>
           }
