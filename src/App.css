@@ -28,6 +28,13 @@ div.wrapper{
   padding: 10px;
 }
 
+div.loading{
+  background-color:#523E39;
+  color: #CEBEBA;
+  text-align: center;
+  text-decoration: none;
+}
+
 img.thumbnail{
   /* width:24%; */
   /* height:200px */

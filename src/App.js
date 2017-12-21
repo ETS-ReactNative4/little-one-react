@@ -151,7 +151,7 @@ class App extends Component {
           {
             <div id={"modal"} className={"modalDialog"}>
               <div>
-              {content}
+              <div className={"loading"}>{content}</div>
               <img onLoad={this.handleImageLoaded.bind(this)} src={this.state.modal} display={"inline-block"} alt={""} className={"modal"}/>
                 {nextButton}
                 {previousButton}
