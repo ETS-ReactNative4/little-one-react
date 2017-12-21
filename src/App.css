@@ -17,14 +17,22 @@
 } */
 
 div{
+  /* background-color:#523E39; */
+  max-width:1280px;
+  /* padding: 1px; */
+}
+
+div.wrapper{
   background-color:#523E39;
   max-width:1280px;
   padding: 10px;
 }
 
 img.thumbnail{
-  width:24%;
-  height:200px
+  /* width:24%; */
+  /* height:200px */
+  margin: auto;
+  display: block;
 }
 
 h1 {
@@ -48,6 +56,7 @@ select {
   font-size: inherit;
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -116,10 +125,10 @@ img.modal {
   width: auto;
 }
 
-div.image {
+/* div.image {
   display: inline;
   padding: 0.5%
-}
+} */
 
 .modalDialog {
   width: auto;

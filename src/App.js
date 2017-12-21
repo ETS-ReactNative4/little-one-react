@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
+import './tiled.css';
 
-const photoCount=8
-const addPhotos=4
+const photoCount=12
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
 const imgLocation="https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/"
 const imgThumbnailBase="https://chambersbristol.tiny.pictures/main/"
-const imgThumbnailwidth="300"
+const imgThumbnailwidth="450"
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state={imageFolders:[], option:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[], modal:"", modalNext:"",modalPrevious:"",imageStatus: true };
+    this.state={imageFolders:[], option:[], imageURLs:[], photoCount: photoCount, imageTumbnails:[], modal:"", modalNext:"",modalPrevious:"",imageStatus:true, addPhotos:0 };
     this.viewMorePhotos=this.viewMorePhotos.bind(this);
     this.getPhotos=this.getPhotos.bind(this);
     this.updateModal=this.updateModal.bind(this);
@@ -21,6 +21,18 @@ class App extends Component {
   
   componentWillMount() {
       this.populateImageFolders();
+      console.log(document.documentElement.clientWidth)
+      let viewport = document.documentElement.clientWidth
+      console.log(viewport)
+      if (viewport <= 650){
+        this.setState({addPhotos:2})
+      }
+      if (viewport <= 1050 && viewport >= 651){
+        this.setState({addPhotos:3})
+      }
+      if (viewport >= 1051){
+        this.setState({addPhotos:4})
+      }
   }
 
   populateImageFolders() {
@@ -38,7 +50,7 @@ class App extends Component {
   }
 
   viewMorePhotos () {
-    const newPhotos=this.state.photoCount+addPhotos;
+    const newPhotos=this.state.photoCount+this.state.addPhotos;
     this.setState({photoCount: newPhotos});
   }
 
@@ -108,7 +120,7 @@ class App extends Component {
 
 
     return (
-        <div>
+        <div className={"wrapper"}>
           <div>
           <h1>Albert Stephen Xavier Chambers</h1>
           <h2>Born: Bristol on 20 July 2016 at 23:18, weight; 7lbs 2oz</h2>
@@ -123,11 +135,13 @@ class App extends Component {
           {
             this.state.imageURLs.slice(0, this.state.photoCount).map((item,index) => {
             return (
-              <div key={index} className = {"image"}>
+              <div key={index} className={"box"}><div key={index} className={"boxInner"}>
+              <div key={index} className={"image"}>
                 <a href={"#modal"} onClick={(e) => this.setModal(item,index,e)}>
                   <img src={item.thumbnail} className={"thumbnail"} alt = {""}/>
                 </a>
               </div>
+              </div></div>
             )
             })
           }
