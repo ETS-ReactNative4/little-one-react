@@ -21,7 +21,7 @@ img.tiled {
    top: 8px;
    bottom: 8px;
    overflow: hidden;
-   background-color: rgb(7, 4, 4);
+   background-color: #634d47;
 }
 .boxInner img {
    height:100%
