@@ -1,63 +1,44 @@
-
-<script language="JavaScript1.2">
-  <!--
-  
-  
-  function get_password() {
-    orig_pass = prompt("Please enter password","");
-    if (orig_pass!=null && orig_pass!="")
-    password = new Array(orig_pass.length);
-    for(i=0; i<orig_pass.length; i++) {
-      password[i] = orig_pass.charCodeAt(i);
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#9fc2cc">
+    <style>
+    body {
+     background-color: #CEBEBA; 
     }
-    return password;
-  }
-  
-  password = get_password();
-  orig = unescape("".concat('rn%3Cw%20tvceiey%3Ddt%2Ctim%3Edpilehllime1%20a%22ei%20ik-%3Dh%20ani%3D%2Cn%20mh%3Cm%20-tae-meanmts%3Et%3Dt%20t%22-%3Cecl%20%22%20%20m8othoa%20e%20%23fonwi%20n%3Eme9oc%3De%3Ctcmomccm%20mstt%20%22d%20ym',
-  'h%3D%3Ee%20%20%20ygmbdgo%7B%20m%3Emtoo%20rd%3CclEEul%20a-rm%20rBht%23fm%20Bmum%20mrp%20mmt%7Dmm%20%20ae%22%23efnpm%3Dt%7B-iy%20odn%20ca%27tlhha%22%20%20%3Ay%3C-P%22-i%3B%20nim%2018%20wmsamm%20d2a%20%3',
-  'Aods0m%20t%3B%20%20l%20ico%20km%20pb%22%20ycmrommn%3BC0a%20ame%20mm%20g%20er%3Amclumon%3BwCB%20ot2%20mm%20oEl%20%20%20m%20E%20mlmm/t%20%20%22%20mlm%20%20s%20m%20%20-mymmb%3Ex%20%20%20-mn%3C%20etm%20r%',
-  '3A%20m%20rmsfAi%20sm.p%20%20o%3At%20o%20a%20dmweeaved%20rwuh%22%20d%20pin%20t-ome%20e%20%3D%20a%20emsdwmd%23%20htmn%20tmrem%20ct%20mAdoesps%3C%20enno%20nmp%3ArS%22ld%21eoes%20ct%20go/la%20efo/pomisnud',
-  'gm%22t.easwnt%20/ag-alcrn%20ea/e%20Bgubaate%20-pnfi-%20%20wdm%20pimlmh%3Emema%20/%20%3Ci%20mdm-cl%22ml%20a%20%20etn%3D%3Bjr.f%22ms%20vitI_%22%3D%20trvmn%25CrsB..sUa%20%20%25cm%20ijfbsf-%20om%27%20%3Et',
-  '%20e%20-mo%3Caot%3Crm%20nrcnlrhmsef%22cox%20%20aI_%22%3D%20ormfv%25Ca%20B-ioUak/%25%20%3Emic%20ene%3C-%22mnl-f%20%20m%21oe%20eie-%20%20mmLue%20c%3Aeo/PB%20sAnetR%25%20U%7Dn%20mh%20LL%20p_%21ao%20ees%2',
-  '0km%20tb%20%20shtwv%20%20%20mier%20%20nk%20ee%20i%20sa%20Lteedi%20a/o%20whaPh.pb%20feRL-fltuyf%20%20uilo%20n%60%20ebdra%20%20tmmn%20%20lt%20%20num%20%3Dd%25ls%20Oeu%20Ud%20leo%20ftpb%20eiPs%20fltuhR%2',
-  '0ma%20lodc%60Ifrdnr%3E%20b%20rbee%20rceHefbme%20mmo%20e%20t%20%20%20Tmnt.%60e%22m%20do%20%20cnU%20/Iid%20r/o-ivhio.otao.%22%20%20c%20ea%20LCn%2C%20%20ci/a%22I%20lUi.c_fnpL%60lmvihio%20%20%20olUUwccrm%',
-  '20Lh%20eybwoeikdihr%20%22ethn-ot%20g%20mru%20tiii%20adso%22%20eknrtntygiul%20-hin%22LmobUh%20v%20%20i.LiUo%20om%20oe%20BcnLh%20er%25eawo%20nonrof%20mmuilc%20oNMn%20b%20tihmu%20n%20%20yfnLlrnrgCfnwd.%6',
-  '0unime%20-%20%60g%22i%20%20%20m%20..%20%20l%3E-%20%20%25moeo%20elUipilL%20litR%20%3Cntt%22/%20%3Eme%20Rmmnoy/meoa%20%20%20mdce%3Crrp%3E%20rtm-%20%20%3Ci%20csbunt%20lim%20oe%20%20%20iYi%20ae%20%20a%20%',
-  '20itnJnollu%20vpecc%20ap%20ncm%20m%20%20tprestci.%20%20%20mlm%20%3Crciotvip%20%20nmmwa%20%20L%20dd%3Emdr%20U%20b%20%3Cpmlur%20d%3Dm%20an%20ct%3Ed%20cb%20m%3Em%20%22fmoo%3Cd%3Cmi%3Eitm%20m/P%3C%20eymi%',
-  '20Rimrtl%3C%3Eceor%3E%20mm%20g/%20hs%3E%3C%20om%3E%20mrm%20p%20%3CmicpmR%20%3Dn%22h%21onpe%3E%22l%20mp%20%20%20%20dm%20uiveinadm%22rao%20%3Ebm/davteSt%20%20t%20%20%20otv%3Ehm%20%20i%3C/bmda%3Dmmm%3C/h',
-  't%3Enemmt'));
-  orig = orig.split("");
-  
-  passnum = orig.length % password.length;
-  for(i=orig.length-1; i>=0; i--) {
-  
-    passnum--;
-    if (passnum == -1) passnum = password.length - 1;
-    
-    pos1 = i;
-    pos2 = i + password[passnum];
-  
-    if (pos2 >= orig.length) continue;
-  
-    char1 = orig[pos1];
-    char2 = orig[pos2];
-  
-    orig[pos2] = char1;
-    orig[pos1] = char2;
-  
-  }
-  
-  orig1 = "";
-  for(i=0;i<orig.length;i++) {
-    orig1 = orig1 + orig[i];
-  }
-  orig1 = orig1.replace(/mmm/g,"\r\n");
-  
-  document.write(orig1);
-  
-  //-->
-  
-  </script>
-  <noscript>JavaScript must be enabled in your browse in order to see protected page.</noscript>
-  
+    #wrapper{
+      font-family: 'Play';
+      max-width: 1280px;
+      display: block;
+      margin: 0 auto;
+      color: #CEBEBA
+    }
+      </style>
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <!-- <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico"> -->
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Little one</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id = "wrapper">
+      <div id = "root"></div>
+    </div>
+  </body>
+</html>
