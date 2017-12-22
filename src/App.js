@@ -5,8 +5,8 @@ import './tiled.css';
 const photoCount=12
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
 const imgLocation="https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/"
-const imgThumbnailBase="https://chambersbristol.tiny.pictures/main/"
-const imgThumbnailwidth="450"
+const imgThumbnailBase="https://chambersbristolextra.tiny.pictures/main/"
+const imgThumbnailwidth="300"
 
 class App extends Component {
 
@@ -21,9 +21,7 @@ class App extends Component {
   
   componentWillMount() {
       this.populateImageFolders();
-      console.log(document.documentElement.clientWidth)
       let viewport = document.documentElement.clientWidth
-      console.log(viewport)
       if (viewport <= 650){
         this.setState({addPhotos:2})
       }
@@ -161,6 +159,7 @@ class App extends Component {
               </div>
             </div>
           }
+        <p className= {"creator"}>R. Chambers, 2017</p>
         </div>
 
     );
