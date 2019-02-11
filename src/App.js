@@ -5,7 +5,7 @@ import './tiled.css';
 const photoCount=12
 const imgURL="https://api.github.com/repos/robchamberspfc/little-one-images/contents/content"
 const imgLocation="https://raw.githubusercontent.com/robchamberspfc/little-one-images/master/content/"
-const imgThumbnailBase="https://chambersbristolextra.tiny.pictures/main/"
+const imgThumbnailBase="https://albertchambersbristol.tiny.pictures/main/"
 const imgThumbnailwidth="300"
 
 class App extends Component {
